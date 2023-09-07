@@ -38,6 +38,9 @@ jobs:
       - name: Copy Docker Compose file to EC2
         run: |
           pwd
+          ls
+          ls /home/runner/work/nginx-app/nginx-app
+          
          # scp -o StrictHostKeyChecking=no -i ${{ secrets.EC2_SSH_PRIVATE_KEY }} docker-compose.yml ubuntu@52.71.255.212:/home/ubuntu/  
         #  echo "$EC2_SSH_PRIVATE_KEY" > private_key && chmod 400 private_key
          # ssh -o StrictHostKeyChecking=no -i ${{EC2_SSH_PRIVATE_KEY}} ubuntu@52.71.255.212  
