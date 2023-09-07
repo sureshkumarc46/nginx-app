@@ -38,7 +38,7 @@ jobs:
       - name: Copy Docker Compose file to EC2
         run: |
           echo "$EC2_SSH_PRIVATE_KEY" > private_key && chmod 400 private_key
-          scp -o StrictHostKeyChecking=no -i private_key docker-compose.yml ubuntu@52.71.255.212:/home/ubuntu/   
+          scp -o StrictHostKeyChecking=no -i ${{EC2_SSH_PRIVATE_KEY}} docker-compose.yml ubuntu@52.71.255.212:/home/ubuntu/   
 
          # curl -LJO https://raw.githubusercontent.com/sureshkumarc46/nginx-app/main/docker-compose.yml
 
