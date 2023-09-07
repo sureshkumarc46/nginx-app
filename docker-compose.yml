@@ -1,6 +1,6 @@
 version: '3'
 services:
   nginx:
-    image: $ECR_REGISTRY/$ECR_REPOSITORY:${IMAGE_TAG}
+    image: 1e6ee66b047a474e0bfe859b24fb1b2ec95be7bb
     ports:
       - "8080:80"
