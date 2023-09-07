@@ -15,36 +15,36 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v2
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: AKIAQTRELBQXGI6O57ND
-          aws-secret-access-key: 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
-          aws-region: us-east-1
+      # - name: Configure AWS credentials
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     aws-access-key-id: AKIAQTRELBQXGI6O57ND
+      #     aws-secret-access-key: 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
+      #     aws-region: us-east-1
 
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
+      # - name: Login to Amazon ECR
+      #   id: login-ecr
+      #   uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build, tag, and push image to Amazon ECR
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: nginx
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG 
+      # - name: Build, tag, and push image to Amazon ECR
+      #   env:
+      #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+      #     ECR_REPOSITORY: nginx
+      #     IMAGE_TAG: ${{ github.sha }}
+      #   run: |
+      #     docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+      #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG 
           
       - name: Copy Docker Compose file to EC2
         run: |
           pwd
           ls
-          #ls /home/runner/work/nginx-app/nginx-app
+        #  ls /home/runner/work/nginx-app/nginx-app
           
-          #scp -o StrictHostKeyChecking=no -i ${{ secrets.EC2_SSH_PRIVATE_KEY }} /home/runner/work/nginx-app/nginx-app/docker-compose.yml ubuntu@52.71.255.212:/home/ubuntu/  
+        # scp -o StrictHostKeyChecking=no -i ${{ secrets.EC2_SSH_PRIVATE_KEY }} /home/runner/work/nginx-app/nginx-app/docker-compose.yml ubuntu@52.71.255.212:/home/ubuntu/  
         #  echo "$EC2_SSH_PRIVATE_KEY" > private_key && chmod 400 private_key
-         # ssh -o StrictHostKeyChecking=no -i ${{EC2_SSH_PRIVATE_KEY}} ubuntu@52.71.255.212  
+        # ssh -o StrictHostKeyChecking=no -i ${{EC2_SSH_PRIVATE_KEY}} ubuntu@52.71.255.212  
 
-         # curl -LJO https://raw.githubusercontent.com/sureshkumarc46/nginx-app/main/docker-compose.yml
+        # curl -LJO https://raw.githubusercontent.com/sureshkumarc46/nginx-app/main/docker-compose.yml
 
          
