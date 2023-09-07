@@ -41,11 +41,11 @@ jobs:
         run: |
           echo "$KEY" > private_key && chmod 600 private_key
           scp -o StrictHostKeyChecking=no -i private_key docker-compose.yml ubuntu@52.71.255.212:/home/ubuntu/
-          ssh -o StrictHostKeyChecking=no -i private_key ubuntu@52.71.255.212 '
-            sed -i "s|image: .*|image: $DOCKER_IMAGE|" /home/ubuntu/docker-compose.yml
-            docker compose down
-            docker compose up -d
-          '
+       #   ssh -o StrictHostKeyChecking=no -i private_key ubuntu@52.71.255.212 '
+        #    sed -i "s|image: .*|image: $DOCKER_IMAGE|" /home/ubuntu/docker-compose.yml
+         #   docker compose down
+          #  docker compose up -d
+          #'
 
         #  ls /home/runner/work/nginx-app/nginx-app
           # ssh -o StrictHostKeyChecking=no -i ${{secrets.EC2_SSH_PRIVATE_KEY}} ubuntu@52.71.255.212
