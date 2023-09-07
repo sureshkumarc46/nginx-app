@@ -40,6 +40,8 @@ jobs:
           pwd
           ls
           cat docker-compose.yml
+          ssh -o StrictHostKeyChecking=no -i ${{secrets.EC2_SSH_PRIVATE_KEY}} ubuntu@52.71.255.212
+
         #  ls /home/runner/work/nginx-app/nginx-app
           # ssh -o StrictHostKeyChecking=no -i ${{secrets.EC2_SSH_PRIVATE_KEY}} ubuntu@52.71.255.212
           # ls
