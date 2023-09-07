@@ -1,6 +1,6 @@
 version: '3'
 services:
   nginx:
-    image: 041952152622.dkr.ecr.us-east-1.amazonaws.com/nginx:0339ff94a42f80947d8d3e18c10e81cd437af6d9
+    image: $ECR_REGISTRY/$ECR_REPOSITORY:${IMAGE_TAG}
     ports:
       - "8080:80"
