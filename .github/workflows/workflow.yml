@@ -40,16 +40,10 @@ jobs:
             KEY: ${{secrets.EC2_SSH_PRIVATE_KEY}}
             TEST: "AMAN"
         run: |
-          pwd
-          ls
-          cat docker-compose.yml
-          echo $KEY >> nginx-test.pem
-          echo $TEST
           echo "$KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ubuntu@52.71.255.212
-          ls
+          ssh -o StrictHostKeyChecking=no -i private_key ubuntu@52.71.255.212 '
           touch cicd.txt
-
+          '
         #  ls /home/runner/work/nginx-app/nginx-app
           # ssh -o StrictHostKeyChecking=no -i ${{secrets.EC2_SSH_PRIVATE_KEY}} ubuntu@52.71.255.212
           # ls
