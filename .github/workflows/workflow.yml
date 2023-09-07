@@ -39,4 +39,4 @@ jobs:
         run: |
           curl -LJO https://raw.githubusercontent.com/sureshkumarc46/nginx-app/main/docker-compose.yml
 
-          scp -o StrictHostKeyChecking=no -i ${{ secrets.EC2_SSH_PRIVATE_KEY }} /docker-compose.yml ubuntu@52.71.255.212:/home/ubuntu/   
+          scp -o StrictHostKeyChecking=no -i ${{ secrets.EC2_SSH_PRIVATE_KEY }} docker-compose.yml ubuntu@52.71.255.212:/home/ubuntu/   
