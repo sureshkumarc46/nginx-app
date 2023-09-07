@@ -36,11 +36,14 @@ jobs:
       #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG 
           
       - name: Copy Docker Compose file to EC2
+        env:
+            KEY: ${{secrets.EC2_SSH_PRIVATE_KEY}}
         run: |
           pwd
           ls
           cat docker-compose.yml
-          ssh -o StrictHostKeyChecking=no -i ${{secrets.EC2_SSH_PRIVATE_KEY}} ubuntu@52.71.255.212
+          ls $KEY
+        #  ssh -o StrictHostKeyChecking=no -i ${{secrets.EC2_SSH_PRIVATE_KEY}} ubuntu@52.71.255.212
 
         #  ls /home/runner/work/nginx-app/nginx-app
           # ssh -o StrictHostKeyChecking=no -i ${{secrets.EC2_SSH_PRIVATE_KEY}} ubuntu@52.71.255.212
