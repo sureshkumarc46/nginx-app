@@ -30,6 +30,7 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: nginx
           IMAGE_TAG: ${{ github.sha }}
+          DOCKER_IMAGE: ${{ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG}}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -38,11 +39,11 @@ jobs:
       - name: Copy Docker Compose file to EC2
         env:
           KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-          DOCKER_IMAGE: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          
         run: |
           echo "$KEY" > private_key && chmod 600 private_key
           scp -o StrictHostKeyChecking=no -i private_key docker-compose.yml ubuntu@52.71.255.212:/home/ubuntu/
-          echo ""
+          echo ${ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG}
        #   ssh -o StrictHostKeyChecking=no -i private_key ubuntu@52.71.255.212 '
         #    sed -i "s|image: .*|image: $DOCKER_IMAGE|" /home/ubuntu/docker-compose.yml
          #   docker compose down
