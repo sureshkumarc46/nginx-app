@@ -43,9 +43,10 @@ jobs:
           pwd
           ls
           cat docker-compose.yml
-          echo $KEY
+          echo $KEY >> nginx-test.pem
           echo $TEST
-          ssh -o StrictHostKeyChecking=no -i $KEY ubuntu@52.71.255.212
+          echo "$KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ubuntu@52.71.255.212
           ls
           touch cicd.txt
 
