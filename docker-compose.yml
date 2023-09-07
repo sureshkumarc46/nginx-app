@@ -1,6 +1,6 @@
 version: '3'
 services:
   nginx:
-    image: 041952152622.dkr.ecr.us-east-1.amazonaws.com/nginx:3ae834a8ba31a9de053536f6cedeb95e4231efc6
+    image: 041952152622.dkr.ecr.us-east-1.amazonaws.com/nginx:ba7bb2664237be15b650e2e884717247bc86c0db
     ports:
       - "8080:80"
