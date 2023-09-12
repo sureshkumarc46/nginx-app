@@ -45,6 +45,7 @@ jobs:
           echo "$KEY" > private_key && chmod 600 private_key
           scp -o StrictHostKeyChecking=no -i private_key docker-compose.yml ubuntu@3.94.205.160:/home/ubuntu/
           echo "${DOCKER_IMAGE}"
+          echo "${{ github.sha }}"
           ssh -o StrictHostKeyChecking=no -i private_key ubuntu@3.94.205.160 '
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 041952152622.dkr.ecr.us-east-1.amazonaws.com
           sed -i "s|image: nginx:.*|image: $DOCKER_IMAGE|" /home/ubuntu/docker-compose.yml
