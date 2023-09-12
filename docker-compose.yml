@@ -1,6 +1,6 @@
 version: '3'
 services:
   nginx:
-    image: ${DOCKER_IMAGE}
+    image: 041952152622.dkr.ecr.us-east-1.amazonaws.com/nginx:97ad92baf47c1b3f04e52f3e49af04e3d3fd2d90
     ports:
       - "8080:80"
