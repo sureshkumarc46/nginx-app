@@ -1,6 +1,6 @@
 version: '3'
 services:
   nginx:
-    image: 041952152622.dkr.ecr.us-east-1.amazonaws.com/nginx:${{ github.sha }}
+    image: ${DOCKER_IMAGE}
     ports:
       - "8080:80"
