@@ -40,7 +40,7 @@ jobs:
       - name: Copy Docker Compose file to EC2
         env:
           KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-          DOCKER_IMAGE: ${{ ECR_REGISTRY }}/nginx:${{ github.sha }}
+          DOCKER_IMAGE: ${{ steps.login-ecr.outputs.registry }}/nginx:${{ github.sha }}
         run: |
           echo "$KEY" > private_key && chmod 600 private_key
           scp -o StrictHostKeyChecking=no -i private_key docker-compose.yml ubuntu@3.94.205.160:/home/ubuntu/
