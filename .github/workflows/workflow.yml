@@ -40,18 +40,18 @@ jobs:
       - name: Copy Docker Compose file to EC2
         env:
           KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-          DOCKER_IMAGE: ${{ steps.login-ecr.outputs.registry }}/nginx:${{ github.sha }}
+          DOCKER_IMAGE: 041952152622.dkr.ecr.us-east-1.amazonaws.com/nginx:${{ github.sha }}
         run: |
           echo "$KEY" > private_key && chmod 600 private_key
-          echo "${DOCKER_IMAGE}"
-          echo "${{ github.sha }}"
-          sed -i "s|image: nginx:.*|image: $DOCKER_IMAGE|" docker-compose.yml
+          sed -i "s|image: 041952152622.dkr.ecr.us-east-1.amazonaws.com/nginx:.*|image: $DOCKER_IMAGE|" docker-compose.yml
           scp -o StrictHostKeyChecking=no -i private_key docker-compose.yml ubuntu@3.94.205.160:/home/ubuntu/
           ssh -o StrictHostKeyChecking=no -i private_key ubuntu@3.94.205.160 '
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 041952152622.dkr.ecr.us-east-1.amazonaws.com          
-          docker compose down
-          docker compose up -d
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 041952152622.dkr.ecr.us-east-1.amazonaws.com
+          docker-compose down  # Use "docker-compose" instead of "docker compose"
+          docker-compose up -d  # Use "docker-compose" instead of "docker compose"
           '
+
+
          # sed -i "s|image: .*|image: $DOCKER_IMAGE|" /home/ubuntu/docker-compose.yml
           
          # ssh -o StrictHostKeyChecking=no -i private_key ubuntu@52.71.255.212 '
