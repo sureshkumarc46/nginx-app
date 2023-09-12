@@ -51,8 +51,8 @@ jobs:
           '
          # ssh -o StrictHostKeyChecking=no -i private_key ubuntu@52.71.255.212 '
         #    sed -i "s|image: .*|image: $DOCKER_IMAGE|" /home/ubuntu/docker-compose.yml
-         #   docker compose down
-          #  docker compose up -d
+         #   docker-compose down
+          #  docker-compose up -d
           #'
 
         #  ls /home/runner/work/nginx-app/nginx-app
