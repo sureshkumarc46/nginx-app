@@ -42,6 +42,7 @@ jobs:
           KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
           DOCKER_IMAGE: 041952152622.dkr.ecr.us-east-1.amazonaws.com/nginx:${{ github.sha }}
         run: |
+          echo "${DOCKER_IMAGE}"
           echo "$KEY" > private_key && chmod 600 private_key
           sed -i "s|image: 041952152622.dkr.ecr.us-east-1.amazonaws.com/nginx:.*|image: $DOCKER_IMAGE|" docker-compose.yml
           scp -o StrictHostKeyChecking=no -i private_key docker-compose.yml ubuntu@3.94.205.160:/home/ubuntu/
