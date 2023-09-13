@@ -44,7 +44,7 @@ jobs:
         run: |
           echo "${DOCKER_IMAGE}"
           echo "$KEY" > private_key && chmod 600 private_key
-          sed -i "s|image: 041952152622.dkr.ecr.us-east-1.amazonaws.com/nginx:.*|image: ${DOCKER_IMAGE}|" docker-compose.yml
+          sed -i "s|image: .*|image: $DOCKER_IMAGE|" docker-compose.yml
           scp -o StrictHostKeyChecking=no -i private_key docker-compose.yml ubuntu@54.87.130.2:/home/ubuntu/
           ssh -o StrictHostKeyChecking=no -i private_key ubuntu@54.87.130.2 '
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 041952152622.dkr.ecr.us-east-1.amazonaws.com
